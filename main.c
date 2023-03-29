@@ -20,14 +20,14 @@ struct elements
     char x_pos[10];
     char y_pos[10];
     char rot[10];
-} elements_array[1000];
+} elements_array[1000], shortest_elements_array[1000];
 
 int element_size = 0;
 
 /* Functions */
 
-/* when return 1, scandir will put this dirent to the list */
-static int parse_ext(const struct dirent *dir)
+/* Parses through current directory for .brd extensions */
+int parse_ext(const struct dirent *dir)
 {
     if (!dir)
         return 0;
@@ -47,6 +47,7 @@ static int parse_ext(const struct dirent *dir)
     return 0;
 }
 
+/* Reads file(s) and populates elements struct array */
 void readFile(char *fileString)
 {
     int num;
@@ -166,6 +167,8 @@ void readFile(char *fileString)
     fclose(fptr);
 }
 
+/* writes the elements in the order they appear in shortest elements array 
+(we will have to consider spool elements as well later) */
 void writeFile(char *fileString)
 {
     int num;
@@ -203,16 +206,10 @@ void writeFile(char *fileString)
     fclose(fptr);
 }
 
-// int main()
-// {
-//     char *fileString = "Sample1.brd";
+/* Write shortest distance algorithm here*/
+void shortest_distance() {
 
-//     readFile(fileString);
-//     // shortest_distance(graph, src, dest, shortestChannel);
-//     writeFile(fileString);
-// }
-
-
+}
 
 int main(void)
 {
