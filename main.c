@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h>
+#include "main.h"
+#include "shortest_path.h"
 
 /* Definitions */
 
@@ -11,16 +13,7 @@
 
 /* Global variables */
 
-struct elements
-{
-    char name[20];
-    char library[50];
-    char package[20];
-    char value[20];
-    char x_pos[10];
-    char y_pos[10];
-    char rot[10];
-} elements_array[1000], shortest_elements_array[1000];
+struct element elements_array[1000], shortest_elements_array[1000];
 
 int element_size = 0;
 
@@ -68,7 +61,7 @@ void readFile(char *fileString)
         dummy = strstr(line, "element name");
         if (dummy != NULL)
         {
-            struct elements new_element;
+            struct element new_element;
             elements_array[element_size] = new_element;
             element_size++;
             char *token = strtok(line, " ");
@@ -204,11 +197,6 @@ void writeFile(char *fileString)
     }
 
     fclose(fptr);
-}
-
-/* Write shortest distance algorithm here*/
-void shortest_distance() {
-
 }
 
 int main(void)
